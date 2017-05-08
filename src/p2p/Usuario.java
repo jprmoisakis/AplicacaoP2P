@@ -5,6 +5,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
+import clienteServidor.Servidor;
+
 public class Usuario {
 
 	public static void main(String[] args) throws IOException {
@@ -20,8 +22,9 @@ public class Usuario {
 		
 		ServerSocket srvSocket = new ServerSocket(port);//servidor
 		Socket socket = new Socket(address, port);//client
+		//daqui pra cima está certo
 		
-		Entrada server = new Entrada(socket,srvSocket);//servidor
+		Entrada server = new Entrada(socket);//servidor
 		
 		Saida client = new Saida(socket);// cliente
 		

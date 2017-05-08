@@ -10,11 +10,9 @@ import java.util.Scanner;
 public class Entrada implements Runnable{
 
 	private Socket cliente;
-	private ServerSocket tmpSocket;
 	
-	public Entrada(Socket client, ServerSocket tmpSocket){
+	public Entrada(Socket client){
 		this.cliente = client;
-		this.tmpSocket = tmpSocket;
 	}
 	
 	@Override
@@ -22,7 +20,6 @@ public class Entrada implements Runnable{
 		
 		try {
 			while(true){
-				this.cliente = this.tmpSocket.accept();
 				InputStreamReader entrada = new InputStreamReader(this.cliente.getInputStream());
 				BufferedReader le = new BufferedReader(entrada);
 				String resposta = le.readLine();
