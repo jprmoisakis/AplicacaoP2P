@@ -1,11 +1,11 @@
 package p2p;
 
 import java.io.IOException;
+import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-import clienteServidor.Servidor;
 
 public class Usuario {
 
@@ -20,19 +20,28 @@ public class Usuario {
 		int port = 8000;
 		String address = "127.0.0.1";
 		
-		ServerSocket srvSocket = new ServerSocket(port);//servidor
-		Socket socket = new Socket(address, port);//client
-		//daqui pra cima está certo
 		
-		Entrada server = new Entrada(socket);//servidor
-		
-		Saida client = new Saida(socket);// cliente
-		
-		Thread s = new Thread(server);
-		Thread c = new Thread(client);
-		
-		s.start();
-		c.start();
+		try{	
+			ServerSocket tmpsocket = new ServerSocket(port);//define a porta
+			Socket cl = new Socket(address,port);
+			while(true){
+				//System.out.println("aguardando cliente");
+				Socket socket = tmpsocket.accept();
+				Entrada multUser = new Entrada(socket);
+				
+				Saida s = new Saida(cl);
+				
+				Thread k = new Thread(s);
+				
+				Thread t = new Thread(multUser);//thread para cada cliente
+				t.start();
+				k.start();
+			}
+		}catch (BindException e){
+			System.out.println("Endereco em uso"); 
+		}catch (Exception e){
+			System.out.println("erro " + e);
+		};
 	}
 
 }
