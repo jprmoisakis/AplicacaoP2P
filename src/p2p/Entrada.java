@@ -23,7 +23,9 @@ public class Entrada implements Runnable{
 				InputStreamReader entrada = new InputStreamReader(this.cliente.getInputStream());
 				BufferedReader le = new BufferedReader(entrada);
 				String resposta = le.readLine();
-				System.out.println("Pessoa: " + resposta);
+				if(resposta != null){
+					System.out.println("Pessoa: " + resposta);
+				}
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -20,13 +20,13 @@ public class Saida implements Runnable{
 
 	@Override
 	public void run() {
+		Scanner in = new Scanner(System.in);
 		while(true){
-			Scanner in = new Scanner(System.in);
 			String msg = in.nextLine() + '\n';
 			try {
 				DataOutputStream saida = new DataOutputStream(this.socket.getOutputStream());
 				saida.write(msg.getBytes());
-				this.socket.close();
+				
 			
 			} catch (IOException e) {
 		

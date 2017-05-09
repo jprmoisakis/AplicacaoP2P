@@ -23,13 +23,13 @@ public class Usuario {
 		
 		try{	
 			ServerSocket tmpsocket = new ServerSocket(port);//define a porta
-			Socket cl = new Socket(address,port);
+			Socket socketClient = new Socket(address,port);
 			while(true){
 				//System.out.println("aguardando cliente");
 				Socket socket = tmpsocket.accept();
 				Entrada multUser = new Entrada(socket);
 				
-				Saida s = new Saida(cl);
+				Saida s = new Saida(socketClient);
 				
 				Thread k = new Thread(s);
 				
@@ -37,6 +37,7 @@ public class Usuario {
 				t.start();
 				k.start();
 			}
+			
 		}catch (BindException e){
 			System.out.println("Endereco em uso"); 
 		}catch (Exception e){
