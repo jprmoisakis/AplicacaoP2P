@@ -17,12 +17,14 @@ public class Usuario {
 		System.out.println("Insira o endereco");
 		//String address = strScanner.nextLine();			//
 		
-		int port = 8000;
+		int port = 8001;
+		int port2 = 8000;
 		String address = "127.0.0.1";
 		
 		
 		try{	
-			ServerSocket tmpsocket = new ServerSocket(port);//define a porta
+			ServerSocket tmpsocket = new ServerSocket(port2);//define a porta
+			String a = strScanner.nextLine();
 			Socket socketClient = new Socket(address,port);
 			while(true){
 				//System.out.println("aguardando cliente");
